@@ -1,0 +1,8 @@
+{
+  "name": "my_promise_in_typescript",
+  "version": "0.0.1",
+  "description": "write A+ promise in typescript",
+  "main": "index.js",
+  "author": "WuYifanX <510182912@qq.com>",
+  "license": "MIT"
+}
