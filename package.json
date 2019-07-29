@@ -1,8 +1,35 @@
 {
   "name": "my_promise_in_typescript",
   "version": "0.0.1",
-  "description": "write A+ promise in typescript",
-  "main": "index.js",
+  "description": "A+ promise in typescript",
+  "main": "./src/index.ts",
   "author": "WuYifanX <510182912@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "lint:tslint": "tslint -c tslint.json --project tsconfig.json",
+    "tsc:check": "tsc --noEmit --skipLibCheck",
+    "lint": "yarn lint:tslint && yarn tsc:check",
+    "ck": "yarn lint && yarn test"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.11.0",
+    "prettier": "^1.14.2",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-plugin-prettier": "^1.3.0",
+    "tslint-react": "^3.6.0",
+    "typescript": "^3.4.3",
+    "eslint": "^5.4.0",
+    "babel-eslint": "^9.0.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-import-resolver-webpack": "^0.10.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-mocha": "^5.3.0",
+    "eslint-plugin-prettier": "^2.3.1"
+  }
 }
