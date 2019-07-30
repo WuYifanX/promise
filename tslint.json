@@ -12,8 +12,6 @@
     "jsx-boolean-value": false,
     "jsx-no-lambda": false,
     "no-empty-interface": false,
-    "member-ordering": false,
-    "member-access": false,
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
     "no-var-requires": false,

@@ -6,7 +6,9 @@
   "author": "WuYifanX <510182912@qq.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "yarn test:PromiseAPlus && yarn test:tsx",
+    "test:tsx": "jest",
+    "test:PromiseAPlus": "node ./src/test/promisesAplusTests.js",
     "lint:tslint": "tslint -c tslint.json --project tsconfig.json",
     "tsc:check": "tsc --noEmit --skipLibCheck",
     "lint": "yarn lint:tslint && yarn tsc:check",
@@ -33,6 +35,7 @@
     "typescript": "^3.4.3"
   },
   "dependencies": {
-    "@types/node": "^12.6.8"
+    "@types/node": "^12.6.8",
+    "promises-aplus-tests": "^2.1.2"
   }
 }
