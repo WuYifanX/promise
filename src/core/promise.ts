@@ -70,26 +70,6 @@ export class Promise<T = any> {
     }
   }
 
-  public resolve = (value?: T) => {
-    microtask(() => {
-      if (this.status === "pending") {
-        this.status = "resolved";
-        this.result = value;
-        this.onFulfilledCallbacks.forEach(fn => fn());
-      }
-    });
-  };
-
-  public reject = (reason?: T) => {
-    microtask(() => {
-      if (this.status === "pending") {
-        this.status = "rejected";
-        this.result = reason;
-        this.onRejectCallbacks.forEach(fn => fn());
-      }
-    });
-  };
-
   public then: Then<T> = (onFulfilledCallback?, onRejectCallback?) => {
     const defaultOnFulfilledCallback = (value?: T) => value;
     const defaultOnRejectCallback = (reason?: T) => {
@@ -146,6 +126,26 @@ export class Promise<T = any> {
 
   public catch = (onRejected: Reject<T>) => {
     return this.then(undefined, onRejected);
+  };
+
+  private resolve = (value?: T) => {
+    microtask(() => {
+      if (this.status === "pending") {
+        this.status = "resolved";
+        this.result = value;
+        this.onFulfilledCallbacks.forEach(fn => fn());
+      }
+    });
+  };
+
+  private reject = (reason?: T) => {
+    microtask(() => {
+      if (this.status === "pending") {
+        this.status = "rejected";
+        this.result = reason;
+        this.onRejectCallbacks.forEach(fn => fn());
+      }
+    });
   };
 
   private resolvePromise = (
