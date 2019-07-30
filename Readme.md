@@ -7,9 +7,23 @@
 ```typescript
 const promise = new Promise();
 
+// Instance Methods
 promise.then((resolve, reject)=>{
   resolve(value);
 })
+
+promise.catch((reason)=>{
+  // deal with reason
+})
+
+// Static Methods:
+Promise.resolve(value);
+
+Promise.reject(reason);
+
+Promise.race(promises);
+
+Promise.all(promises);
 ```
 
 ### How to test
