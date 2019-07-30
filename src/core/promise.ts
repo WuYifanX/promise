@@ -25,9 +25,35 @@ export class Promise<T = any> {
   };
 
   public static race = (promises: Promise[]) => {
+    if (promises.length === 0) {
+      return;
+    }
+
     return new Promise((resolve, reject) => {
       for (let i = 0; i < promises.length; i++) {
         promises[i].then(resolve, reject);
+      }
+    });
+  };
+
+  public static all = (promises: Promise[]) => {
+    if (promises.length === 0) {
+      return;
+    }
+    const results: any[] = [];
+    return new Promise((resolve, reject) => {
+      for (let i = 0; i < promises.length; i++) {
+        promises[i].then(
+          data => {
+            results[i] = data;
+            if (results.filter(result => !!result).length === promises.length) {
+              resolve(results);
+            }
+          },
+          reason => {
+            reject(reason);
+          }
+        );
       }
     });
   };
@@ -76,7 +102,7 @@ export class Promise<T = any> {
         : defaultOnFulfilledCallback;
 
     onRejectCallback =
-      typeof onFulfilledCallback === "function"
+      typeof onRejectCallback === "function"
         ? onRejectCallback
         : defaultOnRejectCallback;
 
