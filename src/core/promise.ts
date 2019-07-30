@@ -110,22 +110,42 @@ export class Promise<T = any> {
       let x;
       if (this.status === "pending") {
         this.onFulfilledCallbacks.push(() => {
-          x = onFulfilledCallback!(this.result);
-          this.resolvePromise(promise2, x, resolve, reject);
+          try {
+            x = onFulfilledCallback!(this.result);
+            this.resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
         });
         this.onRejectCallbacks.push(() => {
-          x = onRejectCallback!(this.result);
-          this.resolvePromise(promise2, x, resolve, reject);
+          try {
+            x = onRejectCallback!(this.result);
+            this.resolvePromise(promise2, x, resolve, reject);
+          } catch (e) {
+            reject(e);
+          }
         });
       } else if (this.status === "resolved") {
-        x = onFulfilledCallback!(this.result);
-        this.resolvePromise(promise2, x, resolve, reject);
+        try {
+          x = onFulfilledCallback!(this.result);
+          this.resolvePromise(promise2, x, resolve, reject);
+        } catch (e) {
+          reject(e);
+        }
       } else if (this.status === "rejected") {
-        x = onRejectCallback!(this.result);
-        this.resolvePromise(promise2, x, resolve, reject);
+        try {
+          x = onRejectCallback!(this.result);
+          this.resolvePromise(promise2, x, resolve, reject);
+        } catch (e) {
+          reject(e);
+        }
       }
     });
     return promise2;
+  };
+
+  public catch = (onRejected: Reject<T>) => {
+    return this.then(undefined, onRejected);
   };
 
   private resolvePromise = (

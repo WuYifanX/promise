@@ -117,4 +117,25 @@ describe("myPromise", () => {
       }
     );
   });
+
+  it("promise catch will catch any rejects", done => {
+    const promise1 = Promise.reject(1);
+    const promise2 = new Promise(resolve => {
+      resolve(2);
+    });
+    const promise3 = new Promise(resolve => {
+      setTimeout(() => {
+        resolve(3);
+      });
+    });
+
+    Promise.all([promise3, promise2, promise1])!
+      .then(value => {
+        throw new Error("never here");
+      })
+      .catch(reason => {
+        expect(reason).toBe(1);
+        done();
+      });
+  });
 });
