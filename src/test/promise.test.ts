@@ -26,4 +26,23 @@ describe("myPromise", () => {
       done();
     });
   });
+
+  it("static resolve method will resolve value", done => {
+    Promise.resolve("success").then((value: string) => {
+      expect(value).toBe("success");
+      done();
+    });
+  });
+
+  it("static reject method will reject reason", done => {
+    Promise.reject("reason").then(
+      () => {
+        throw Error("should not implement this methods");
+      },
+      (reason: string) => {
+        expect(reason).toBe("reason");
+        done();
+      }
+    );
+  });
 });

@@ -12,11 +12,22 @@ export type Then<T> = (
 export type Executor<T> = (resolve: Resolve<T>, reject: Reject<T>) => void;
 
 export class Promise<T = any> {
+  public static resolve = (val: any) => {
+    return new Promise(resolve => {
+      resolve(val);
+    });
+  };
+
+  public static reject = (reason: any) => {
+    return new Promise((resolve, reject) => {
+      reject(reason);
+    });
+  };
+
   private status: Status = "pending";
   private result?: T;
   private onFulfilledCallbacks: Array<Resolve<T>> = [];
   private onRejectCallbacks: Array<Reject<T>> = [];
-
   constructor(executor?: Executor<T>) {
     try {
       executor!(this.resolve, this.reject);
