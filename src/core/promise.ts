@@ -24,6 +24,14 @@ export class Promise<T = any> {
     });
   };
 
+  public static race = (promises: Promise[]) => {
+    return new Promise((resolve, reject) => {
+      for (let i = 0; i < promises.length; i++) {
+        promises[i].then(resolve, reject);
+      }
+    });
+  };
+
   private status: Status = "pending";
   private result?: T;
   private onFulfilledCallbacks: Array<Resolve<T>> = [];

@@ -11,6 +11,7 @@
     "interface-name": false,
     "jsx-boolean-value": false,
     "jsx-no-lambda": false,
+    "prefer-for-of": false,
     "no-empty-interface": false,
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,

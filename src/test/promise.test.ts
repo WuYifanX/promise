@@ -45,4 +45,18 @@ describe("myPromise", () => {
       }
     );
   });
+
+  it("static race method will only receive the fastest resolve", done => {
+    const fastestPromise = Promise.resolve(1);
+    const latePromise = new Promise(resolve => {
+      setTimeout(() => {
+        resolve(2);
+      });
+    });
+
+    Promise.race([latePromise, fastestPromise]).then(result => {
+      expect(result).toBe(1);
+      done();
+    });
+  });
 });
