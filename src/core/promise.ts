@@ -106,18 +106,10 @@ export class Promise<T = any> {
           this.resolvePromise(promise2, x, resolve, reject);
         });
       } else if (this.status === "resolved") {
-        try {
-          x = onFulfilledCallback!(this.result);
-        } catch (e) {
-          reject(e);
-        }
+        x = onFulfilledCallback!(this.result);
         this.resolvePromise(promise2, x, resolve, reject);
       } else if (this.status === "rejected") {
-        try {
-          x = onRejectCallback!(this.result);
-        } catch (e) {
-          reject(e);
-        }
+        x = onRejectCallback!(this.result);
         this.resolvePromise(promise2, x, resolve, reject);
       }
     });
