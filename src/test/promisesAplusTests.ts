@@ -23,5 +23,6 @@ const adapter = {
 };
 
 promisesAplusTests(adapter, (err: any) => {
+  // tslint:disable-next-line:no-console
   console.log(err);
 });
