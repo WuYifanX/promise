@@ -87,38 +87,38 @@ export class Promise<T = any> {
         : defaultOnRejectCallback;
 
     const promise2 = new Promise((resolve, reject) => {
-      let x;
+      let x: any;
       if (this.status === "pending") {
         this.onFulfilledCallbacks.push(() => {
           try {
             x = onFulfilledCallback!(this.result);
-            this.resolvePromise(promise2, x, resolve, reject);
           } catch (e) {
             reject(e);
           }
+          this.resolvePromise(promise2, x, resolve, reject);
         });
         this.onRejectCallbacks.push(() => {
           try {
             x = onRejectCallback!(this.result);
-            this.resolvePromise(promise2, x, resolve, reject);
           } catch (e) {
             reject(e);
           }
+          this.resolvePromise(promise2, x, resolve, reject);
         });
       } else if (this.status === "resolved") {
         try {
           x = onFulfilledCallback!(this.result);
-          this.resolvePromise(promise2, x, resolve, reject);
         } catch (e) {
           reject(e);
         }
+        this.resolvePromise(promise2, x, resolve, reject);
       } else if (this.status === "rejected") {
         try {
           x = onRejectCallback!(this.result);
-          this.resolvePromise(promise2, x, resolve, reject);
         } catch (e) {
           reject(e);
         }
+        this.resolvePromise(promise2, x, resolve, reject);
       }
     });
     return promise2;
