@@ -1,18 +1,19 @@
 const promisesAplusTests = require("promises-aplus-tests");
+import { Promise } from "../core/promise";
 
 const adapter = {
-  resolved: (value) => {
+  resolved: (value: any) => {
     return new Promise(resolve => {
       resolve(value);
     });
   },
-  rejected: (reason) => {
+  rejected: (reason: any) => {
     return new Promise((resolve, reject) => {
       reject(reason);
     });
   },
   deferred: () => {
-    const dfd = {};
+    const dfd: any = {};
     dfd.promise = new Promise((resolve, reject) => {
       dfd.resolve = resolve;
       dfd.reject = reject;
@@ -21,6 +22,6 @@ const adapter = {
   }
 };
 
-promisesAplusTests(adapter, (err) => {
+promisesAplusTests(adapter, (err: any) => {
   console.log(err);
 });

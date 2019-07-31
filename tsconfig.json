@@ -3,7 +3,6 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "esModuleInterop": true,
-    "jsx": "react",
     "lib": ["es5", "es2015", "es7", "dom"],
     "module": "es6",
     "moduleResolution": "node",
@@ -12,8 +11,9 @@
     "outDir": "./dist/",
     "noUnusedLocals": true,
     "sourceMap": true,
+    "allowJs": true,
     "strict": true,
-    "target": "es5",
+    "target": "es2015",
     "pretty": true,
     "typeRoots": ["./typings", "./node_modules/@types"]
   },

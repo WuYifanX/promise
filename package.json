@@ -8,7 +8,8 @@
   "scripts": {
     "test": "yarn test:PromiseAPlus && yarn test:tsx",
     "test:tsx": "jest",
-    "test:PromiseAPlus": "node ./src/test/promisesAplusTests.js",
+    "test:PromiseAPlus": "yarn clean:build && tsc ./src/test/promisesAplusTests.ts --outDir ./build && node ./build/test/promisesAplusTests.js",
+    "clean:build": "rm -rf ./build",
     "lint:tslint": "tslint -c tslint.json --project tsconfig.json",
     "tsc:check": "tsc --noEmit --skipLibCheck",
     "lint": "yarn lint:tslint && yarn tsc:check",
